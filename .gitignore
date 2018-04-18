@@ -20,3 +20,4 @@ dist
 /other/configuration/calculator/cypress/screenshots
 /other/configuration/calculator.solution/cypress/videos
 /other/configuration/calculator.solution/cypress/screenshots
+.idea
