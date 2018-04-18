@@ -17,25 +17,35 @@ Then run this code with `node 3.todo`
 > Make sure you're in the right directory!
 
  */
-
-const {sum, subtract} = require('./math')
-
-let result, expected
-
-result = sum(3, 7)
-expected = 10
-expect(result).toBe(expected)
-
-result = subtract(7, 3)
-expected = 4
-expect(result).toBe(expected)
-
-function expect(actual) {
+const expect = (actual) => {
   return {
-    toBe(expected) {
+    toBe: (expected) => {
       if (actual !== expected) {
         throw new Error(`${actual} is not equal to ${expected}`)
       }
     },
   }
 }
+
+const testCase = (title, callback) => {
+  try {
+    callback.call()
+    console.log(`✓ [PASSED] ${title}`)
+  } catch(ex) {
+    console.error(`x  [FAILED] ${title} `, ex)
+  }
+}
+
+const {sum, subtract} = require('./math')
+
+testCase("sum adds values", () => {
+  const result = sum(3, 7)
+  const expected = 10
+  expect(result).toBe(expected)
+})
+
+testCase("subtract subtracts numbers", () => {
+  const result = subtract(7, 3)
+  const expected = 4
+  expect(result).toBe(expected)
+})
