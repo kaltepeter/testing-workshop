@@ -3,18 +3,18 @@ import thumbWar from '../thumb-war'
 import * as utils from '../utils'
 
 // add an inline mock with the jest.mock API
-//
-// jest.mock(
-//   relativePathToModuleToMock,
-//   functionThatReturnsMockObject
-// )
-//
+
+jest.mock(
+  '../utils', () => {
+    return {
+      getWinner: jest.fn((p1, p2) => p2)
+    }
+  }
+)
+
 // (Hint #1)
 
 test('returns winner', () => {
-  // remove the next two lines
-  jest.spyOn(utils, 'getWinner')
-  utils.getWinner.mockImplementation((p1, p2) => p2)
 
   const winner = thumbWar('Ken Wheeler', 'Kent C. Dodds')
   expect(winner).toBe('Kent C. Dodds')
@@ -22,9 +22,6 @@ test('returns winner', () => {
   utils.getWinner.mock.calls.forEach(args => {
     expect(args).toEqual(['Ken Wheeler', 'Kent C. Dodds'])
   })
-
-  // remove the next line
-  utils.getWinner.mockRestore()
 })
 
 /*

@@ -1,5 +1,22 @@
 import {isPasswordAllowed, userToJSON} from '../auth'
 
+describe('isPasswordAllowed()', () => {
+  const allowedPassword = ['sfkl.e903f.s']
+  const disallowedPassword = ['', 'fffffffff', '888888888']
+
+  allowedPassword.forEach(pwd => {
+    it(`${pwd} should be allowed`, () => {
+      expect(isPasswordAllowed(pwd)).toBe(true)
+    })
+  })
+
+  disallowedPassword.forEach(pwd => {
+    it(`${pwd} should be disallowed`, () => {
+      expect(isPasswordAllowed(pwd)).toBe(false)
+    })
+  })
+})
+
 // TODO: refactor
 test('isPasswordAllowed only allows some passwords', () => {
   expect(isPasswordAllowed('')).toBe(false)
@@ -15,9 +32,13 @@ test('userToJSON excludes secure properties', () => {
   // doesn't have any of the properties it's not
   // supposed to.
   // Here's an example of a user object:
-  const user = {
+  const safeUser = {
     id: 'some-id',
     username: 'sarah',
+  }
+
+  const user = {
+    ...safeUser,
     // ↑ above are properties which should
     // be present in the returned object
 
@@ -29,10 +50,7 @@ test('userToJSON excludes secure properties', () => {
     salt: 'some shorter string',
   }
 
-  expect(userToJSON(user)).toEqual({
-    id: 'some-id',
-    username: 'sarah',
-  })
+  expect(userToJSON(user)).toEqual(safeUser)
 })
 
 //////// Elaboration & Feedback /////////
