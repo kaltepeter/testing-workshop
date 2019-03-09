@@ -36,7 +36,7 @@ function setup() {
 // 3. Change submitted from `false` to `true`
 // 4. And you're all done!
 /*
-http://ws.kcd.im/?ws=Testing&e=users%20test$20object%20factories&em=kayla.altepeter@merrillcorp.com
+http://ws.kcd.im/?ws=Testing&e=users%20test$20object%20factories&em=myemail@mailinator.com
 */
 beforeEach(() => initDb())
 

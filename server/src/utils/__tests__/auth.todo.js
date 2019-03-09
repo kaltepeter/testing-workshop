@@ -60,7 +60,7 @@ test('userToJSON excludes secure properties', () => {
 // 3. Change submitted from `false` to `true`
 // 4. And you're all done!
 /*
-http://ws.kcd.im/?ws=Testing&e=auth%20util&em=kayla.altepeter@merrillcorp.com
+http://ws.kcd.im/?ws=Testing&e=auth%20util&em=myemail@mailinator.com
 */
 test('I submitted my elaboration and feedback', () => {
   const submitted = true // change this when you've submitted!
